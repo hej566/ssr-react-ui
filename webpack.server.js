@@ -5,6 +5,7 @@ const webpackNodeExternals = require('webpack-node-externals');
 
 const serverConfig = {
     target: 'node',
+    mode: 'production',
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',

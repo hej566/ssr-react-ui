@@ -1,8 +1,14 @@
 import React from 'react';
-import { renderToString } from "react-dom/server";
+import ReactDOMServer from "react-dom/server";
+import { StaticRouter } from "react-router-dom/server";
+import Routes from '../router/routes';
 
-const renderer = (Component) => {
-    const content = renderToString(<Component />);
+const renderer = (url) => {
+    const content = ReactDOMServer.renderToString(
+        <StaticRouter location={url}>
+            <Routes />
+        </StaticRouter>
+    );
     return `
         <html lang="en">
             <title>react-ui</title>
