@@ -1,0 +1,25 @@
+.icon {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  & > svg {
+    @include icon-size($btn-font-size);
+  }
+
+  &--rotating {
+    animation: rotating 0.5s linear infinite;
+  }
+}
+
+.icon--lg {
+  & > svg {
+    @include icon-size($btn-font-size-lg);
+  }
+}
+
+.icon--sm {
+  & > svg {
+    @include icon-size($btn-font-size-sm);
+  }
+}

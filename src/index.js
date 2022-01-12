@@ -1,5 +1,4 @@
 import express from 'express';
-import Home from './client/components/Home';
 import renderer from './helper/renderer';
 
 const app = express();

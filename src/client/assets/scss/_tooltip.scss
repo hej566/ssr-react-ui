@@ -1,0 +1,65 @@
+.tooltip-target {
+  display: inline-block;
+}
+
+.tooltip {
+  @include reset-text();
+  @include font-size($tooltip-font-size);
+  margin: $tooltip-margin;
+  opacity: $tooltip-opacity;
+  word-wrap: break-word;
+}
+
+.tooltip-inner {
+  @include border-radius($tooltip-border-radius);
+  background-color: $tooltip-bg;
+  color: $tooltip-color;
+  max-width: $tooltip-max-width;
+  padding: $tooltip-padding-y $tooltip-padding-x;
+  text-align: center;
+}
+
+.tooltip-arrow {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  svg {
+    filter: drop-shadow(0px -1px 0px rgba(0, 0, 0, 0.3));
+  }
+}
+
+.tooltip[data-popper-placement^='bottom'] {
+  & > .tooltip-arrow {
+    color: #000000;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -60%) rotate(0deg);
+  }
+}
+
+.tooltip[data-popper-placement^='top'] {
+  & > .tooltip-arrow {
+    color: #000000;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -40%) rotate(180deg);
+  }
+}
+
+.tooltip[data-popper-placement^='left'] {
+  & > .tooltip-arrow {
+    color: #000000;
+    top: 50%;
+    left: 100%;
+    transform: translate(-40%, -50%) rotate(90deg);
+  }
+}
+
+.tooltip[data-popper-placement^='right'] {
+  & > .tooltip-arrow {
+    color: #000000;
+    top: 50%;
+    left: 0;
+    transform: translate(-60%, -50%) rotate(-90deg);
+  }
+}

@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
-import Routes from '../router/routes';
+import App from '../client/App';
 
 const renderer = (url) => {
     const content = ReactDOMServer.renderToString(
         <StaticRouter location={url}>
-            <Routes />
+            <App />
         </StaticRouter>
     );
     return `
         <html lang="en">
-            <title>react-ui</title>
+            <head>
+                <title>react-ui</title>
+                <link rel="stylesheet" href="index.css">
+            </head>
+           
             <body>
                 <div id="app">${content}</div>
                 <script src="bundle.js"></script>

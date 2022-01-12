@@ -1,0 +1,31 @@
+.alert {
+  @include border-radius($alert-border-radius);
+  border: $alert-border-width solid transparent;
+  margin-bottom: $alert-margin-bottom;
+  padding: $alert-padding-y $alert-padding-x;
+  position: relative;
+}
+
+.alert-heading {
+  color: inherit;
+}
+
+.alert-link {
+  font-weight: $alert-link-font-weight;
+}
+
+.alert-dismissible {
+  padding-right: $alert-dismissible-padding-r;
+}
+
+@each $state, $value in $theme-colors {
+  $alert-background: shift-color($value, $alert-bg-scale);
+  $alert-border: shift-color($value, $alert-border-scale);
+  $alert-color: shift-color($value, $alert-color-scale);
+  @if (contrast-ratio($alert-background, $alert-color) < $min-contrast-ratio) {
+    $alert-color: mix($value, color-contrast($alert-background), abs($alert-color-scale));
+  }
+  .alert-#{$state} {
+    @include alert-variant($alert-background, $alert-border, $alert-color);
+  }
+}

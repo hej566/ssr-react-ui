@@ -1,0 +1,23 @@
+.breadcrumb {
+  @include font-size($breadcrumb-font-size);
+  @include border-radius($breadcrumb-border-radius);
+  background-color: $breadcrumb-bg;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-bottom: $breadcrumb-margin-bottom;
+  padding: $breadcrumb-padding-y $breadcrumb-padding-x;
+}
+
+.breadcrumb-item {
+  display: flex;
+
+  & > .icon {
+    color: $breadcrumb-divider-color;
+    margin: 0 0.5rem;
+  }
+
+  &.active {
+    color: $breadcrumb-active-color;
+  }
+}

@@ -1,0 +1,17 @@
+.badge {
+  @include font-size($badge-font-size);
+  @include border-radius($badge-border-radius);
+  @include gradient-bg();
+  color: $badge-color;
+  display: inline-block;
+  font-weight: $badge-font-weight;
+  line-height: 1;
+  padding: $badge-padding-y $badge-padding-x;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &:empty {
+    display: none;
+  }
+}

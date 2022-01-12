@@ -1,0 +1,204 @@
+.carousel {
+  position: relative;
+}
+
+.carousel.pointer-event {
+  touch-action: pan-y;
+}
+
+.carousel-inner {
+  @include clearfix();
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.carousel-item {
+  @include transition($carousel-transition);
+  backface-visibility: hidden;
+  display: none;
+  float: left;
+  height: 100%;
+  margin-right: -100%;
+  position: relative;
+  width: 100%;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+}
+
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev {
+  display: block;
+}
+
+/* rtl:begin:ignore */
+.carousel-item-next:not(.carousel-item-start),
+.active.carousel-item-end {
+  transform: translateX(100%);
+}
+
+.carousel-item-prev:not(.carousel-item-end),
+.active.carousel-item-start {
+  transform: translateX(-100%);
+}
+
+/* rtl:end:ignore */
+.carousel-fade {
+  .carousel-item {
+    opacity: 0;
+    transform: none;
+    transition-property: opacity;
+  }
+
+  .carousel-item.active,
+  .carousel-item-next.carousel-item-start,
+  .carousel-item-prev.carousel-item-end {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .active.carousel-item-start,
+  .active.carousel-item-end {
+    @include transition(opacity 0s $carousel-transition-duration);
+    opacity: 0;
+    z-index: 0;
+  }
+}
+
+//
+// Left/right controls for nav
+//
+
+.carousel-control-prev,
+.carousel-control-next {
+  @include transition($carousel-control-transition);
+  align-items: center;
+  background: none;
+  border: 0;
+  bottom: 0;
+  color: $carousel-control-color;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  opacity: $carousel-control-opacity;
+  padding: 0;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: $carousel-control-width;
+  z-index: 1;
+  &:hover,
+  &:focus {
+    color: $carousel-control-color;
+    opacity: $carousel-control-hover-opacity;
+    outline: 0;
+    text-decoration: none;
+  }
+}
+
+.carousel-control-prev {
+  background-image: if(
+    $enable-gradients,
+    linear-gradient(90deg, rgba($black, 0.25), rgba($black, 0.001)),
+    null
+  );
+  left: 0;
+}
+
+.carousel-control-next {
+  background-image: if(
+    $enable-gradients,
+    linear-gradient(270deg, rgba($black, 0.25), rgba($black, 0.001)),
+    null
+  );
+  right: 0;
+}
+
+// Icons for within
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: inline-block;
+  height: $carousel-control-icon-width;
+  width: $carousel-control-icon-width;
+}
+
+.carousel-control-prev-icon {
+  background-image: escape-svg($carousel-control-prev-icon-bg);
+}
+
+.carousel-control-next-icon {
+  background-image: escape-svg($carousel-control-next-icon-bg);
+}
+
+.carousel-indicators {
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  list-style: none;
+  margin-bottom: 1rem;
+  margin-left: $carousel-control-width;
+  margin-right: $carousel-control-width;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  z-index: 2;
+
+  .carousel-indicator {
+    @include transition($carousel-indicator-transition);
+    background-clip: padding-box;
+    background-color: $carousel-indicator-active-bg;
+    border: 0;
+    border-bottom: $carousel-indicator-hit-area-height solid transparent;
+    border-top: $carousel-indicator-hit-area-height solid transparent;
+    box-sizing: content-box;
+    cursor: pointer;
+    flex: 0 1 auto;
+    height: $carousel-indicator-height;
+    margin-left: $carousel-indicator-spacer;
+    margin-right: $carousel-indicator-spacer;
+    opacity: $carousel-indicator-opacity;
+    padding: 0;
+    text-indent: -999px;
+    width: $carousel-indicator-width;
+  }
+
+  .active {
+    opacity: $carousel-indicator-active-opacity;
+  }
+}
+
+.carousel-caption {
+  bottom: $carousel-caption-spacer;
+  color: $carousel-caption-color;
+  left: (100% - $carousel-caption-width) * 0.5;
+  padding-bottom: $carousel-caption-padding-y;
+  padding-top: $carousel-caption-padding-y;
+  position: absolute;
+  right: (100% - $carousel-caption-width) * 0.5;
+  text-align: center;
+}
+
+.carousel-dark {
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    filter: $carousel-dark-control-icon-filter;
+  }
+
+  .carousel-indicators [data-bs-target] {
+    background-color: $carousel-dark-indicator-active-bg;
+  }
+
+  .carousel-caption {
+    color: $carousel-dark-caption-color;
+  }
+}

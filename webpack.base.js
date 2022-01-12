@@ -1,18 +1,40 @@
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|tsx)$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 options: {
                     presets: [
-                        'react',
-                        'stage-0',
-                        ['env', {target: {browsers: ['last 2 versions']}}]
-                    ]
+                        "@babel/preset-env",
+                        "@babel/preset-react",
+                        "@babel/preset-typescript"
+                    ],
                 }
+            },
+            {
+                test: /\.(css|scss)$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
+            },
+            {
+                test: /\.svg$/,
+                use: ['@svgr/webpack'],
+            },
+            {
+
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                    },
+                ],
             }
         ]
     },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    }
 }

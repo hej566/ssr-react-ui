@@ -1,0 +1,120 @@
+@import 'assets/scss/rb';
+
+#app {
+  height: 100%;
+}
+
+.layout {
+  height: inherit;
+
+  .layout-topbar {
+    display: none;
+  }
+
+  .layout-sidebar {
+    background-color: rgba(9, 30, 66, 0.04);
+  }
+
+  .menu {
+    height: 100%;
+  }
+
+  .home {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+.rb-code {
+  margin: 1rem;
+}
+
+.rb-group {
+  margin: 1rem;
+}
+
+.rb-title {
+  font-size: 2rem;
+  text-align: start;
+  margin: 1rem;
+}
+
+.rb-buttons {
+  .rb-button {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+}
+.rb-button-groups {
+  .rb-button-group {
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.rb-badges {
+  .rb-badge-group {
+    display: inline-block;
+    margin-right: 1.5rem;
+  }
+}
+
+.rb-carousels {
+  .rb-carousel-wrapper {
+    height: auto;
+    width: 600px;
+  }
+}
+.rb-dropdowns {
+  .rb-dropdown-wrapper {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+}
+
+.rb-placeholders {
+  .rb-placeholder-wrapper {
+    margin-bottom: 1rem;
+  }
+}
+.rb-progresses {
+  .rb-progress-wrapper {
+    margin-bottom: 1rem;
+  }
+}
+
+.rb-popovers {
+  .rb-popover-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .rb-group {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.rb-tooltips {
+  .rb-tooltip-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .rb-group {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .layout-sidebar {
+    display: none;
+  }
+
+  .layout-topbar {
+    display: block !important;
+  }
+}
