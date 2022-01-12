@@ -1,12 +1,14 @@
 import express from 'express';
 import renderer from './helper/renderer';
+import createStore from './helper/createStore';
 
 const app = express();
 
 app.use(express.static('public'));
 
 app.get('*', (req, res) => {
-    res.send(renderer(req.url));
+    const store = createStore();
+    res.send(renderer(req.url, store));
 });
 
 app.listen(3000, () => {

@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
+import { Provider } from 'react-redux';
 import App from '../client/App';
 
-const renderer = (url) => {
+const renderer = (url, store) => {
     const content = ReactDOMServer.renderToString(
-        <StaticRouter location={url}>
-            <App />
-        </StaticRouter>
+        <Provider store={store}>
+            <StaticRouter location={url}>
+                <App />
+            </StaticRouter>
+        </Provider>
     );
     return `
         <html lang="en">
